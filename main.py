@@ -19,9 +19,9 @@ class BlogHandler(webapp2.RequestHandler):
             Get all posts by a specific user, ordered by creation date (descending).
             The user parameter will be a User object.
         """
-
+        posts_by_user = db.GqlQuery("SELECT * FROM Post WHERE author = '%s' ORDER BY created DESC LIMIT %s OFFSET %s" % (user, limit, offset))
         # TODO - filter the query so that only posts by the given user
-        return None
+        return posts_by_user
 
     def get_user_by_name(self, username):
         """ Get a user object from the db, based on their username """
@@ -260,10 +260,10 @@ class LoginHandler(BlogHandler):
 
     # TODO - The login code here is mostly set up for you, but there isn't a template to log in
 
-    def render_login_form(self, error=""):
+    def render_login_form(self, error="", pwerror=""):
         """ Render the login form with or without an error, based on parameters """
         t = jinja_env.get_template("login.html")
-        response = t.render(error=error)
+        response = t.render(error=error,pwerror=pwerror)
         self.response.out.write(response)
 
     def get(self):
@@ -282,7 +282,7 @@ class LoginHandler(BlogHandler):
             self.login_user(user)
             self.redirect('/blog/newpost')
         else:
-            self.render_login_form(error="Invalid password")
+            self.render_login_form(pwerror="Invalid password")
 
 class LogoutHandler(BlogHandler):
 

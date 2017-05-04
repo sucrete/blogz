@@ -8,11 +8,12 @@
     </head>
     <body>
         <nav>
-            <ul>
-                <li><a href="/">home</a></li>
-                <li><a href="/blog">all posts</a></li>
-                <li><a href="/blog/newpost">new post</a></li>
-            </ul>
+            <a class="nav" href="/">home</a></li>
+            <a class="nav" href="/blog">all posts</a></li>
+            <a class="nav" href="/blog/newpost">new post</a></li>
+            <a class="nav" id="login" href="/login">log in</a></li>
+            <a class="nav" id="logout" href="/logout">log out</a></li>
+
         </nav>
         {% block content %}
         {% endblock %}

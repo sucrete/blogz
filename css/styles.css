@@ -56,17 +56,20 @@ hr {
     font-size: 12px;
 }
 
-nav ul {
-    padding: 0;
-    display: inline-block;
+nav {
+    width: 800px;
+    margin: 0 auto;
 }
 
-nav ul li {
+.nav {
     list-style: none;
     display: inline-block;
     margin-right: 15px;
 }
 
 nav #user-account {
+    float: right;
+}
+#login, #logout {
     float: right;
 }
